@@ -19,9 +19,7 @@ count = 0
 while True:
         _, img = video_capture.read()
         gray_img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)            
-            # Resize face to 200x200
 
-        # See helper.preprocess for viola-jones algorithm
         face, coord = face_detector(gray_img)
         x,y,w,h = coord
 
@@ -34,7 +32,6 @@ while True:
 
 
             # Display Live Count
-
             cv.putText(gray_img, str(count), (x+10,y-30), cv.FONT_HERSHEY_COMPLEX, 1, (255, 0, 0), 2)
 
             cv.imshow("Face Cropper", gray_img)
@@ -73,9 +70,7 @@ if count == 100:
     with open("labels_to_name.json", "w") as write_file:
         json.dump(labels_to_name, write_file)
 
-
     # Creating a numpy array for both training 
-
     labels = np.asarray(labels, dtype=np.int32)
     training_data = np.asarray(training_data, dtype=np.uint8)
     # Initialize the facial recognizer
@@ -86,17 +81,7 @@ if count == 100:
 
     print("Models Trained Successfully.")
         
-
 video_capture.release()
 cv.destroyAllWindows()
 
-
 print("Samples Collected.")
-
-
-
-
-
-
-
-
